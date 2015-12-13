@@ -1,0 +1,13 @@
+LIBRARY BOUNCE INITINSTANCE
+
+DESCRIPTION 'BOUNCE.DSS - An example screen saver extension by John Ridges'
+
+PROTMODE
+
+DATA NONSHARED
+
+EXPORTS
+
+   saverstatus    @1
+   saverdialog    @2
+   saverthread    @3

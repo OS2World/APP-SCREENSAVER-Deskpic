@@ -1,0 +1,28 @@
+/* Resource file for the EYES screen saver extension */
+
+#include <os2.h>
+
+BITMAP 1 eyes.bmp
+BITMAP 2 eyesr.bmp
+
+DLGTEMPLATE 42 LOADONCALL
+BEGIN
+  DIALOG "", 256, 0, 0, 100, 97, FS_NOBYTEALIGN | FS_DLGBORDER | WS_SAVEBITS
+  BEGIN
+    LTEXT "Eyes Screen Saver", 257, 0, 87, 100, 8, DT_CENTER |
+          DT_VCENTER | WS_VISIBLE
+    LTEXT "by John Ridges", 258, 0, 78, 100, 8, DT_CENTER |
+          DT_VCENTER | WS_VISIBLE
+    DEFPUSHBUTTON "OK", 1, 8, 2, 38, 12, WS_GROUP | WS_VISIBLE
+    CONTROL "Cancel", 2, 55, 2, 38, 12, WC_BUTTON, BS_PUSHBUTTON |
+            WS_VISIBLE
+    AUTOCHECKBOX "Enabled", 3, 7, 62, 54, 10, WS_GROUP | WS_VISIBLE
+    AUTOCHECKBOX "Bloodshot", 5, 7, 50, 68, 10, WS_GROUP | WS_VISIBLE
+    LTEXT "Speed:", 260, 15, 37, 31, 8, DT_LEFT | DT_VCENTER | WS_VISIBLE
+    CONTROL "", 6, 52, 37, 39, 8, WC_ENTRYFIELD, ES_LEFT | ES_MARGIN |
+            WS_GROUP | WS_TABSTOP | WS_VISIBLE
+    LTEXT "Quantity:", 259, 7, 22, 40, 8, DT_LEFT | DT_VCENTER | WS_VISIBLE
+    CONTROL "", 4, 52, 22, 39, 8, WC_ENTRYFIELD, ES_LEFT | ES_MARGIN |
+            WS_GROUP | WS_TABSTOP | WS_VISIBLE
+  END
+END

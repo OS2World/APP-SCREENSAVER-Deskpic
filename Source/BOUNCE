@@ -1,0 +1,10 @@
+# Makefile for the BOUNCE screen saver extension
+
+bounce.obj : bounce bounce.c
+    cl /c /ALw /G2cs /Ox /W3 /FPa /D_MT bounce.c
+
+bounce.dss : bounce bounce.obj bounce.def bounce.rc bounce.bmp
+    link /align:16 /NOD bounce,bounce.dll,nul,os2 llibcdll,bounce
+    if exist bounce.dss del bounce.dss
+    ren bounce.dll bounce.dss
+    rc bounce bounce.dss

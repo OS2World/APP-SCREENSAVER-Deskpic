@@ -1,0 +1,10 @@
+# Makefile for the WALL screen saver extension
+
+wall.obj : wall wall.c
+    cl -ML -c -Grs -Ox -W3 wall.c
+
+wall.dss : wall wall.obj wall.def wall.rc
+    link /align:16 wall,wall.dll,nul,os2,wall
+    if exist wall.dss del wall.dss
+    ren wall.dll wall.dss
+    rc wall wall.dss

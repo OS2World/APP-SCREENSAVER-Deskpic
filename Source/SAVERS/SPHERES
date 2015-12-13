@@ -1,0 +1,10 @@
+# Makefile for the SPHERES screen saver extension
+
+spheres.obj : spheres spheres.c
+    cl -ML -c -Grs -Ox -W3 spheres.c
+
+spheres.dss : spheres spheres.obj spheres.def spheres.rc spheres.bmp
+    link /align:16 /NOD spheres,spheres.dll,nul,os2 llibcdll,spheres
+    if exist spheres.dss del spheres.dss
+    ren spheres.dll spheres.dss
+    rc spheres spheres.dss

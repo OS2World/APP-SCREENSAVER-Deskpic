@@ -1,0 +1,10 @@
+# Makefile for the PUZZLE screen saver extension
+
+puzzle.obj : puzzle puzzle.c
+    cl -B2 C2L -ML -c -Grs -Ox -W3 puzzle.c
+
+puzzle.dss : puzzle puzzle.obj puzzle.def puzzle.rc
+    link /align:16 /NOD puzzle,puzzle.dll,nul,os2 llibcdll,puzzle
+    if exist puzzle.dss del puzzle.dss
+    ren puzzle.dll puzzle.dss
+    rc puzzle puzzle.dss

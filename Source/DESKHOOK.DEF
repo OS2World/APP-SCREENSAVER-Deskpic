@@ -1,0 +1,9 @@
+LIBRARY DESKPIC
+
+PROTMODE
+
+EXPORTS
+
+    InstallDeskHook      @1
+    ReleaseDeskHook      @2
+

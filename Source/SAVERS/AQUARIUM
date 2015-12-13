@@ -1,0 +1,13 @@
+# Makefile for the AQUARIUM screen saver extension
+
+aquarium.obj : aquarium aquarium.c
+    cl -B2 C2L -ML -c -Grs -Ox -W3 aquarium.c
+
+aquarium.res : aquarium aquarium.rc fish1.bmp fish2.bmp fish3.bmp
+    rc -r aquarium
+
+aquarium.dss : aquarium aquarium.obj aquarium.def aquarium.res
+    link /align:16 aquarium,aquarium.dll,nul,os2,aquarium
+    if exist aquarium.dss del aquarium.dss
+    ren aquarium.dll aquarium.dss
+    rc aquarium.res aquarium.dss

@@ -1,0 +1,14 @@
+LIBRARY BITMAP INITINSTANCE
+
+DESCRIPTION 'BITMAP.DPR - Desktop picture reader extension (c) 1990 by John Ridges'
+
+PROTMODE
+
+DATA NONSHARED
+
+EXPORTS
+
+   deskpicextension   @1
+   deskpicgetsize     @2
+   deskpicread        @3
+   deskpicinfo        @4

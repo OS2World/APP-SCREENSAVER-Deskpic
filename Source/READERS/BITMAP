@@ -1,0 +1,9 @@
+# Makefile for the BITMAP desktop picture extension
+
+bitmap.obj : bitmap bitmap.c
+    cl -ML -c -Grs -Ox -W3 bitmap.c
+
+bitmap.dpr : bitmap bitmap.obj bitmap.def
+    link /align:16 bitmap,bitmap.dll,nul,os2,bitmap
+    if exist bitmap.dpr del bitmap.dpr
+    ren bitmap.dll bitmap.dpr

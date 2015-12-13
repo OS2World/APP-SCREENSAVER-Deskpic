@@ -1,0 +1,94 @@
+--------------------------------------------------------------------
+Animate - Deskpic - A desktop picture/screen saver program for OS/2 Presentation Manager.
+Version: 1991-Jun-07 
+Author: John Ridges
+License: Released as Public Domain by John Ridges on 2015/11/21
+--------------------------------------------------------------------
+
+By John Ridges
+
+Invocation:  START DESKPIC
+
+To install, place DESKPIC.EXE in your path, DESKPIC.DLL in your libpath.
+Any Desktop Picture Reader or Desktop Screen Saver extensions should also be
+placed in the same directory as DESKPIC.EXE.
+
+
+Deskpic brightens up your Presentation Manager screen by reading a picture
+and making it the screen background instead of that old boring monotone
+background color. It will read BMP, GIF, PCX, or MET picture files, and it
+will also read Animated Desktop Extensions (.ANI files) for the ANIMATE.EXE
+Animated Desktop Program. Just place all your picture files (including
+Animated Desktop Extensions) in a subdirectory and Deskpic will randomly
+choose one to display.
+
+Deskpic is also a screen saver - after a programmable period of inactivity,
+it will clear the screen and randomly choose a screen saver graphic.
+Included is Flex (a bouncing geometric figure), Melting Flex, Spaceflight,
+and Fade to Black. But best of all, Deskpic is extensible. New picture file
+formats can be read with Desktop Picture Reader extensions (.DPR files) and
+you can have more screen savers with Desktop Screen Saver extensions (.DSS
+files). When you start Deskpic it will look for extensions and link them
+right in.
+
+When the desktop has the focus, 'F' will bring the picture forward and
+another 'F' or a mouse movement will return it to the background. If the
+picture is an Animated Desktop Extension, 'P' will pause the animation and
+another 'P' will allow it to continue. You can terminate Deskpic with 'F3'.
+Double-clicking on the desktop will bring up the options dialog.
+
+For those of you that care, I hereby officially release the program into
+the public domain. If you're interested in writing Desktop Picture Reader
+or Screen Saver extensions, there is a package with instructions and two
+sample extensions that I'll be posting. (If you can't find it, contact me
+and I'll get it to you.) I'm really looking forward to seeing some whiz-bang
+extensions, so somebody please write some. 
+
+Deskpic's been pretty thoroughly tested and I'm willing to bet what's left
+of my professional reputation that it's bug free. Of course, legally, I
+make no guarantees about anything it might do to your programs, data,
+hardware, or sanity. Hey, you get what you pay for.
+
+Comments? Questions? Suggestions? Hate mail? You can contact me at Compuserve
+72000,2057 (checked weekly).
+
+
+5/22/90 - Bug fixed that locked up Presentation Manager when the picture was
+an animated desktop and the desktop had the focus and a screen saver was
+activated and the user typed a character. No excuse for this one, I guess
+that just about wraps it up for my professional reputation.
+
+6/03/90 - Added on-line documentation.
+
+6/06/90 - Made Deskpic minimize to an icon when the desktop picture is
+disabled. This allows you to use the screen saver even though you have some
+other program that needs the desktop.
+
+6/30/90 - Added picture tiling and "Browse" button for picture path.
+
+6/07/91 - Made a few improvements to the options dialog. Fixed a problem with
+Browse showing ".." at the root level on HPFS drives. Fixed a problem where
+the screen saver woke up unexpectedly when some applications were being used.
+Changed the screen saver so that when it is woken up with the keyboard,
+instead of passing the character to the last active application, the
+character is ignored.
+
+10/14/91 - Minor update. Fixed a problem that kept the screen saver from
+activating when the computer had network print queues. Made "Single saver"
+actually work properly (oops).
+
+12/24/91 - Made Deskpic more compatible with the OS/2 2.0 Workplace Shell.
+
+
+Note to OS/2 2.0 users:
+
+Version 1.32 of Deskpic has been tested with OS/2 2.0 beta 6.167 and seems to
+work with only a few exceptions. First, the "Desktop Picture" portion is
+useless since the picture obscures any objects you have on the desktop.
+You should disable the "Desktop Picture" and use the desktop's background
+setting instead. You won't get animated desktops, but I think the Workplace
+Shell had made them impossible anyway (at least I can't think of any way to
+implement them -- oh well). Second, the screen savers "Aquarium" and "Spheres"
+don't work and should not be used (they'll crash Deskpic). I'm convinced this
+is due to bugs in the 6.167 beta, so I'm not going to do anything about it
+unless they still don't work with the release version of OS/2 2.0.

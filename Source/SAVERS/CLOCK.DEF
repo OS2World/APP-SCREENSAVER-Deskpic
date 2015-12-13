@@ -1,0 +1,13 @@
+LIBRARY CLOCK INITINSTANCE
+
+DESCRIPTION 'CLOCK.DSS - Screen saver extension (c) 1990 by John Ridges'
+
+PROTMODE
+
+DATA NONSHARED
+
+EXPORTS
+
+   saverstatus    @1
+   saverdialog    @2
+   saverthread    @3

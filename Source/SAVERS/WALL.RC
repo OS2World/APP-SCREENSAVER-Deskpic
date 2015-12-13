@@ -1,0 +1,21 @@
+/* Resource file for the WALL screen saver extension */
+
+#include <os2.h>
+
+DLGTEMPLATE 42 LOADONCALL
+BEGIN
+  DIALOG "", 256, 0, 0, 112, 67, FS_NOBYTEALIGN | FS_DLGBORDER | WS_SAVEBITS
+  BEGIN
+    LTEXT "Wallpaper Screen Saver", 257, 0, 58, 112, 8, DT_CENTER |
+          DT_VCENTER | WS_VISIBLE
+    LTEXT "by John Ridges", 258, 0, 49, 112, 8, DT_CENTER |
+          DT_VCENTER | WS_VISIBLE
+    DEFPUSHBUTTON "OK", 1, 8, 2, 38, 12, WS_GROUP | WS_VISIBLE
+    CONTROL "Cancel", 2, 66, 2, 38, 12, WC_BUTTON, BS_PUSHBUTTON |
+            WS_VISIBLE
+    AUTOCHECKBOX "Enabled", 3, 7, 34, 54, 10, WS_GROUP | WS_VISIBLE
+    LTEXT "Number of tiles:", 259, 7, 22, 71, 8, DT_LEFT | DT_VCENTER | WS_VISIBLE
+    CONTROL "", 4, 82, 22, 19, 8, WC_ENTRYFIELD, ES_LEFT | ES_MARGIN |
+            WS_GROUP | WS_TABSTOP | WS_VISIBLE
+  END
+END

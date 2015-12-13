@@ -1,0 +1,9 @@
+# Makefile for the PATTERN desktop picture extension
+
+pattern.obj : pattern pattern.c
+    cl /c /ALw /G2cs /Ox /W3 /FPa /D_MT pattern.c
+
+pattern.dpr : pattern pattern.obj pattern.def
+    link /align:16 /NOD pattern,pattern.dll,nul,os2 llibcdll,pattern
+    if exist pattern.dpr del pattern.dpr
+    ren pattern.dll pattern.dpr

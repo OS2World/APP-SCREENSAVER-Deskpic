@@ -1,0 +1,88 @@
+Instructions for writing a Desktop Picture Reader Extension for DESKPIC.EXE
+
+
+Good for you! You've decided to write an Desktop Picture Reader Extension.
+What do you need to know to write an extension? Well, a pretty good working
+knowledge of Presentation Manager wouldn't hurt. These instructions will
+attempt to tell you how to write an extension, but they won't tell you how to
+program in PM. To help, an example extension is provided and is a good place
+to start. When I write a new extension, I usually use 'PATTERN' as a
+framework and go from there.
+
+A Desktop Picture Reader Extension is a Dynamic Link Library that contains
+four functions and has the file extension of '.DPR' instead of '.DLL'.
+The four functions must be exported with the following ordinals:
+
+   deskpicextension  @1
+   deskpicgetsize    @2
+   deskpicread       @3
+   deskpicinfo       @4
+
+
+The four functions are specified by the following function prototypes:
+
+   char far * far pascal _loadds deskpicextension(HMODULE);
+   ULONG far pascal _loadds deskpicgetsize(HFILE);
+   BOOL far pascal _loadds deskpicread(HFILE, SEL, BITMAPINFO far *);
+   void far pascal _loadds deskpicinfo(char far *, HWND);
+
+
+deskpicextension
+
+This function is called by DESKPIC to determine the file type that the
+Desktop Picture Reader Extension can read. DESKPIC passes the module handle
+of the Desktop Picture Reader Extension in case any local resources need to
+be accessed. The function should return a pointer to a zero terminated
+string that contains a file extension that specifies the type of files that
+the Desktop Picture Reader Extension can read. The string must begin with a
+period and be in upper case (Example: ".XYZ"). This function should not
+allocate any resources because DESKPIC may call it and then choose not to
+call the other three functions. Note that while DESKPIC will call this
+function before calling the other three, it may call this function multiple
+times.
+
+deskpicgetsize
+
+This function is called by DESKPIC to determine the size of the area needed
+to contain the bitmap image data. DESKPIC passes an open file handle of the
+file it chose to be the desktop picture, with the file pointer at the
+beginning of the file. The function should read whatever information it
+needs to determine the size of the bitmap image data, and return that size
+(in bytes) to DESKPIC. In case of an error, the function should return zero.
+
+deskpicread
+
+This function is called by DESKPIC to read the bitmap image data. DESKPIC
+passes the open file handle of the desktop picture file (with the file
+pointer positioned wherever 'deskpicgetsize' left it), a selector to the
+bitmap image data area, and a pointer to the BITMAPINFO structure. The
+function should fill in both the bitmap image data area and the BITMAPINFO
+structure with information read from the picture file. When the function is
+finished, the data should conform to the formats of 'pbData' and 'pbmiData'
+for the OS/2 function 'GpiCreateBitmap'. If the function is successful it
+should return FALSE, otherwise it should return TRUE in the case of an error.
+Since this function performs the bulk of the work of the Desktop Picture
+Reader Extension, it may use up to 16K of stack space. Note that the
+function should not close the file handle, as DESKPIC will do this itself.
+
+deskpicinfo
+
+DESKPIC calls this procedure when the user has clicked on the "info" button
+in the DESKPIC control dialog. Usually the procedure brings up a message box
+with credits and instructions, but a full fledged dialog box can be invoked
+if desired. DESKPIC passes a pointer to the pathname of the picture currently
+being displayed, and the handle of DESKPIC's control dialog window. Note that
+this procedure is optional: if the "deskpicinfo" ordinal is not exported, a
+default message box will be invoked.
+
+
+
+That completes the explanation. Where the instructions are a little sketchy,
+use the example source code to see at least one way of doing it. Good luck,
+and may the bits be with you.
+
+
+John Ridges
+
+Gilmore /108 or Compuserve 72000,2057 (checked weekly)
+May 9, 1990

@@ -1,0 +1,10 @@
+# Makefile for the FLASH screen saver extension
+
+flash.obj : flash flash.c
+    cl -ML -c -Grs -Ox -W3 flash.c
+
+flash.dss : flash flash.obj flash.def flash.rc
+    link /align:16 flash,flash.dll,nul,os2,flash
+    if exist flash.dss del flash.dss
+    ren flash.dll flash.dss
+    rc flash flash.dss

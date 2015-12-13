@@ -1,0 +1,24 @@
+/* Resource file for the PUZZLE screen saver extension */
+
+#include <os2.h>
+
+DLGTEMPLATE 42 LOADONCALL
+BEGIN
+  DIALOG "", 256, 0, 0, 106, 105, FS_NOBYTEALIGN | FS_DLGBORDER | WS_SAVEBITS
+  BEGIN
+    LTEXT "Puzzle Screen Saver", 257, 0, 96, 106, 8, DT_CENTER |
+          DT_VCENTER | WS_VISIBLE
+    LTEXT "by John Ridges", 258, 0, 87, 106, 8, DT_CENTER |
+          DT_VCENTER | WS_VISIBLE
+    DEFPUSHBUTTON "OK", 1, 10, 2, 38, 12, WS_GROUP | WS_VISIBLE
+    CONTROL "Cancel", 2, 59, 2, 38, 12, WC_BUTTON, BS_PUSHBUTTON |
+            WS_VISIBLE
+    AUTOCHECKBOX "Enabled", 3, 10, 72, 54, 10, WS_GROUP | WS_VISIBLE
+    AUTORADIOBUTTON "Large tiles", 5, 9, 59, 60, 9, WS_GROUP | WS_VISIBLE
+    AUTORADIOBUTTON "Medium tiles", 6, 9, 49, 70, 9, WS_VISIBLE
+    AUTORADIOBUTTON "Small tiles", 7, 9, 39, 60, 9, WS_VISIBLE
+    LTEXT "Speed:", 259, 10, 22, 32, 8, DT_LEFT | DT_VCENTER | WS_VISIBLE
+    CONTROL "", 4, 46, 22, 30, 8, WC_ENTRYFIELD, ES_LEFT | ES_MARGIN |
+            WS_GROUP | WS_TABSTOP | WS_VISIBLE
+  END
+END

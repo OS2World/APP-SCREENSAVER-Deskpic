@@ -1,0 +1,16 @@
+# Makefile for the CLOCK screen saver extension
+
+fixmul.obj : clock fixmul.asm
+    masm -W2 fixmul;
+    
+clock.obj : clock clock.c
+    cl -ML -c -Grs -Ox -W3 clock.c
+
+clockp.obj : clock clockp.c
+    cl -ML -c -Grs -Ox -W3 clockp.c
+
+clock.dss : clock clock.obj clockp.obj fixmul.obj clock.def clock.rc
+    link /align:16 clock+clockp+fixmul,clock.dll,nul,os2,clock
+    if exist clock.dss del clock.dss
+    ren clock.dll clock.dss
+    rc clock clock.dss

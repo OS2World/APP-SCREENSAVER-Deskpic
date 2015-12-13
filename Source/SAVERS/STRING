@@ -1,0 +1,13 @@
+# Makefile for the STRING screen saver extension
+
+fixasm.obj : fixasm.asm
+    masm fixasm;
+    
+string.obj : string string.c
+    cl -ML -c -Grs -Ox -W3 string.c
+
+string.dss : string string.obj fixasm.obj string.def string.rc
+    link /align:16 string fixasm,string.dll,nul,os2,string
+    if exist string.dss del string.dss
+    ren string.dll string.dss
+    rc string string.dss

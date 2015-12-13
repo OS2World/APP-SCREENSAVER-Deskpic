@@ -1,0 +1,31 @@
+/* Resource file for the AQUARIUM screen saver extension */
+
+#include <os2.h>
+
+BITMAP 1 fish1.bmp
+BITMAP 2 fish2.bmp
+BITMAP 3 fish3.bmp
+
+DLGTEMPLATE 42 LOADONCALL
+BEGIN
+  DIALOG "", 256, 0, 0, 117, 95, FS_NOBYTEALIGN | FS_DLGBORDER | WS_SAVEBITS
+  BEGIN
+    LTEXT "Aquarium Screen Saver", 257, 0, 86, 117, 8, DT_CENTER |
+          DT_VCENTER | WS_VISIBLE
+    LTEXT "by John Ridges", 258, 0, 77, 117, 8, DT_CENTER |
+          DT_VCENTER | WS_VISIBLE
+    DEFPUSHBUTTON "OK", 1, 8, 2, 38, 12, WS_GROUP | WS_VISIBLE
+    CONTROL "Cancel", 2, 71, 2, 38, 12, WC_BUTTON, BS_PUSHBUTTON |
+            WS_VISIBLE
+    AUTOCHECKBOX "Enabled", 3, 7, 62, 54, 10, WS_GROUP | WS_VISIBLE
+    LTEXT "Number of fish:", 259, 7, 50, 76, 8, DT_LEFT | DT_VCENTER | WS_VISIBLE
+    CONTROL "", 4, 87, 50, 19, 8, WC_ENTRYFIELD, ES_LEFT | ES_MARGIN |
+            WS_GROUP | WS_TABSTOP | WS_VISIBLE
+    LTEXT "Minimum speed:", 260, 7, 36, 76, 8, DT_LEFT | DT_VCENTER | WS_VISIBLE
+    CONTROL "", 5, 87, 36, 19, 8, WC_ENTRYFIELD, ES_LEFT | ES_MARGIN |
+            WS_GROUP | WS_TABSTOP | WS_VISIBLE
+    LTEXT "Maximum speed:", 261, 7, 22, 76, 8, DT_LEFT | DT_VCENTER | WS_VISIBLE
+    CONTROL "", 6, 87, 22, 19, 8, WC_ENTRYFIELD, ES_LEFT | ES_MARGIN |
+            WS_GROUP | WS_TABSTOP | WS_VISIBLE
+  END
+END

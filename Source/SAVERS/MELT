@@ -1,0 +1,10 @@
+# Makefile for the MELT screen saver extension
+
+melt.obj : melt melt.c
+    cl -ML -c -Grs -Ox -W3 melt.c
+
+melt.dss : melt melt.obj melt.def melt.rc
+    link /align:16 melt,melt.dll,nul,os2,melt
+    if exist melt.dss del melt.dss
+    ren melt.dll melt.dss
+    rc melt melt.dss

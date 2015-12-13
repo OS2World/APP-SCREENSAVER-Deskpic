@@ -1,0 +1,47 @@
+# Makefile for the deskpic program
+
+initdll.obj : deskpic initdll.asm
+    masm initdll;
+
+deskhook.obj : deskpic deskhook.c
+    cl -c -ASw -G2rs -Ox -W3 deskhook.c
+
+deskpic.dll : deskpic initdll.obj deskhook.obj deskhook.def
+    link /align:16 deskhook+initdll,deskpic.dll,nul,os2,deskhook
+
+fixmul.obj : deskpic fixmul.asm
+    masm -W2 fixmul;
+    
+quix.obj : quix.c deskpic
+    cl -c -ALw -G2rs -Ox -W3 quix.c
+
+space.obj : space.c deskpic
+    cl -c -ALw -G2rs -Ox -W3 space.c
+
+fade.obj : fade.c deskpic
+    cl -c -ALw -G2rs -Ox -W3 fade.c
+
+loadpic.obj : loadpic.c deskpic
+    cl -c -ALw -G2rs -Osler -W3 loadpic.c
+
+readgif.obj : readgif.c deskpic
+    cl -c -ALw -G2rs -Ox -W3 readgif.c
+
+readpcx.obj : readpcx.c deskpic
+    cl -c -ALw -G2rs -Ox -W3 readpcx.c
+
+about.obj : about.c deskpic.h deskpic
+    cl -c -AL -G2rs -Osler -W3 about.c
+
+dialog.obj : dialog.c deskpic.h deskpic
+    cl -c -AL -G2rs -Osler -W3 dialog.c
+
+deskpic.obj : deskpic.c deskpic
+    cl -c -B2 C2L -ALw -G2rs -Osler -W3 deskpic.c
+
+deskpic.exe : deskpic.obj dialog.obj fade.obj quix.obj space.obj fixmul.obj about.obj\
+              loadpic.obj readgif.obj readpcx.obj deskpic.def deskpic.rc deskpic.h deskpic.ico deskpic
+     link /align:16 /packc:1024 /NOE deskpic+dialog+fade+quix+fixmul+space+loadpic+readgif+readpcx+about,desk,nul,os2,deskpic
+     if exist deskpic.exe del deskpic.exe
+     ren desk.exe deskpic.exe
+     rc deskpic

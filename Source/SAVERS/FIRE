@@ -1,0 +1,13 @@
+# Makefile for the FIRE screen saver extension
+
+fixasm.obj : fire fixasm.asm
+    masm fixasm;
+    
+fire.obj : fire fire.c
+    cl -B2 C2L -ML -c -Grs -Ox -W3 fire.c
+
+fire.dss : fire fire.obj fixasm.obj fire.def fire.rc
+    link /align:16 fire fixasm,fire.dll,nul,os2,fire
+    if exist fire.dss del fire.dss
+    ren fire.dll fire.dss
+    rc fire fire.dss

@@ -1,0 +1,106 @@
+Instructions for writing a Desktop Screen Saver Extension for DESKPIC.EXE
+
+
+Good for you! You've decided to write an Desktop Screen Saver Extension.
+What do you need to know to write an extension? Well, a pretty good working
+knowledge of Presentation Manager wouldn't hurt. These instructions will
+attempt to tell you how to write an extension, but they won't tell you how to
+program in PM. To help, an example extension is provided and is a good place
+to start. When I write a new extension, I usually use 'BOUNCE' as a
+framework and go from there.
+
+A Desktop Screen Saver Extension is a Dynamic Link Library that contains
+three functions and has the file extension of '.DSS' instead of '.DLL'.
+The three functions must be exported with the following ordinals:
+
+   saverstatus  @1
+   saverdialog  @2
+   saverthread  @3
+
+
+The three functions are specified by the following function prototypes:
+
+   char far * far pascal _loadds saverstatus(SAVERBLOCK far *, BOOL far *);
+   MRESULT CALLBACK saverdialog(HWND, USHORT, MPARAM, MPARAM);
+   void far pascal _loadds saverthread(void);
+
+
+And the structure SAVERBLOCK is defined as follows:
+
+   typedef struct {
+      HAB deskpichab;
+      HWND screenhwnd;
+      RECTL screenrectl;
+      ULONG volatile closesemaphore;
+      HMODULE thismodule;
+   } SAVERBLOCK;
+
+The SAVERBLOCK structure is how DESKPIC provides the extension with
+information about its environment. The fields have the following meaning:
+
+'deskpichab' is the handle of the DESKPIC program's Anchor Block. This may
+   be needed by some OS/2 functions.
+'screenhwnd' is the handle of the screen saver window. This will be needed
+   by 'saverthread' to get a Presentation Space to draw into.
+'screenrectl' is the coordinates of the screen saver window.
+'closesemaphore' is a memory semaphore that is used by 'saverthread' to
+   determine when to stop.
+'thismodule' is the module handle of the Desktop Screen Saver Extension.
+   This will be needed to access any local resources.
+
+The values of 'deskpichab' and 'thismodule' are always valid, but the values
+of 'screenhwnd', 'screenrectl', and 'closesemaphore' are only valid during
+the execution of 'saverthread'.
+
+
+saverstatus
+
+This function is called by DESKPIC to get the name of the screen saver.
+DESKPIC passes a pointer to a SAVERBLOCK structure, and a pointer to a
+BOOL. The function should save the pointer to the SAVERBLOCK structure in
+global memory so that it can be accessed by the other two functions. The
+function should also indicate whether the screen saver is enabled by setting
+the BOOL to TRUE if enabled, and FALSE if disabled. When finished, the
+function should return a pointer to a zero terminated string which is the
+name of the Desktop Screen Saver Extension, or NULL if the screen saver has
+no name. Note that while DESKPIC will call this function before calling the
+other two, it may call this function multiple times. 
+
+
+saverdialog
+
+This is a dialog procedure for the dialog that DESKPIC will invoke when
+the user chooses this screen saver from the list of Desktop Screen Saver
+Extensions. The dialog should allow the user to modify any parameters that
+the screen saver may have. The dialog template should be part of the
+resources of the Desktop Screen Saver Extension and should have a dialog
+template ID of 42. If 'saverstatus' returns NULL instead of a screen saver
+name, the dialog will never be invoked.
+
+
+saverthread
+
+This procedure will be started as a separate thread when DESKPIC invokes
+the screen saver. The procedure should clear the screen and then display
+whatever graphics the screen saver employs until 'closesemaphore' in the
+SAVERBLOCK structure becomes non-zero. When 'closesemaphore' becomes
+non-zero, the procedure should release any resources it might have, enter
+a critical section using 'DosEnterCritSec', clear 'closesemaphore' using
+'DosSemClear', and exit (in that order). It is important that the procedure
+respond quickly to 'closesemaphore' becoming non-zero so that users will
+not be delayed by the screen saver. The procedure should also get its own
+Anchor Block, since threads shouldn't make calls to the PM API without one.
+Note that stack space is limited, so any sizeable memory needed should be
+allocated at run time.
+
+
+
+That completes the explanation. Where the instructions are a little sketchy,
+use the example source code to see at least one way of doing it. Good luck,
+and may the bits be with you.
+
+
+John Ridges
+
+Gilmore /108 or Compuserve 72000,2057 (checked weekly)
+April 29, 1990

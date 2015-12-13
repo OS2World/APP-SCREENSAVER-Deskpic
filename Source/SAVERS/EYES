@@ -1,0 +1,10 @@
+# Makefile for the EYES screen saver extension
+
+eyes.obj : eyes eyes.c
+    cl -ML -B2 C2L -c -Grs -Ox -W3 eyes.c
+
+eyes.dss : eyes eyes.obj eyes.def eyes.rc eyes.bmp
+    link /align:16 eyes,eyes.dll,nul,os2,eyes
+    if exist eyes.dss del eyes.dss
+    ren eyes.dll eyes.dss
+    rc eyes eyes.dss

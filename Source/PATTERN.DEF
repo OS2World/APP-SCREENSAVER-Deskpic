@@ -1,0 +1,14 @@
+LIBRARY PATTERN INITINSTANCE
+
+DESCRIPTION 'PATTERN.DPR - An example desktop picture reader extension by John Ridges'
+
+PROTMODE
+
+DATA NONSHARED
+
+EXPORTS
+
+   deskpicextension   @1
+   deskpicgetsize     @2
+   deskpicread        @3
+   deskpicinfo        @4

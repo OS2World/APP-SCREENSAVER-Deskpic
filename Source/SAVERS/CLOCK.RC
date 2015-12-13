@@ -1,0 +1,28 @@
+/* Resource file for the CLOCK screen saver extension */
+
+#include <os2.h>
+
+DLGTEMPLATE 42 LOADONCALL
+BEGIN
+  DIALOG "", 256, 0, 0, 150, 116, FS_NOBYTEALIGN | FS_DLGBORDER | WS_SAVEBITS
+  BEGIN
+    LTEXT "Clock Screen Saver", 257, 0, 107, 150, 8, DT_CENTER |
+          DT_VCENTER | WS_VISIBLE
+    LTEXT "by John Ridges", 258, 0, 98, 150, 8, DT_CENTER |
+          DT_VCENTER | WS_VISIBLE
+    DEFPUSHBUTTON "OK", 1, 9, 2, 38, 12, WS_GROUP | WS_VISIBLE
+    CONTROL "Cancel", 2, 56, 2, 38, 12, WC_BUTTON, BS_PUSHBUTTON |
+            WS_VISIBLE
+    CONTROL "About", 3, 103, 2, 38, 12, WC_BUTTON, BS_PUSHBUTTON |
+            WS_VISIBLE
+    AUTOCHECKBOX "Enabled", 5, 9, 82, 54, 10, WS_GROUP | WS_VISIBLE
+    AUTOCHECKBOX "Show face", 9, 9, 67, 88, 10, WS_GROUP | WS_VISIBLE
+    AUTOCHECKBOX "Show second hand", 6, 9, 57, 96, 10, WS_GROUP | WS_VISIBLE
+    AUTOCHECKBOX "Show minute marks", 7, 9, 47, 99, 10, WS_GROUP | WS_VISIBLE
+    AUTOCHECKBOX "Show hour marks", 8, 9, 37, 88, 10, WS_GROUP | WS_VISIBLE
+    LTEXT "Size of clock:", 259, 9, 22, 59, 8, DT_LEFT | DT_VCENTER |
+          WS_VISIBLE
+    CONTROL "", 4, 72, 22, 39, 8, WC_ENTRYFIELD, ES_LEFT | ES_MARGIN |
+            WS_GROUP | WS_TABSTOP | WS_VISIBLE
+  END
+END
